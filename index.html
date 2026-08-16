@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="KetoFit 75">
+  <title>KetoFit 75 Tracker</title>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: #161f30;
+      --accent: #10b981;
+      --accent-warm: #f59e0b;
+      --accent-blue: #3b82f6;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border: #233048;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', Roboto, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); padding: env(safe-area-inset-top) 16px 90px 16px; min-height: 100vh; }
+    header { text-align: center; padding: 16px 0 12px; }
+    h1 { font-size: 22px; font-weight: 700; color: #fff; }
+    
+    .day-banner { background: linear-gradient(135deg, #1e293b, #0f172a); border: 1px solid var(--border); border-radius: 16px; padding: 14px 16px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
+    .day-info { display: flex; flex-direction: column; }
+    .day-title { font-size: 20px; font-weight: 800; color: var(--accent); }
+    .day-subtitle { font-size: 11px; color: var(--text-muted); }
+    .day-actions { display: flex; gap: 8px; }
+    .btn-sm { padding: 6px 12px; border-radius: 8px; border: none; font-size: 12px; font-weight: 600; cursor: pointer; }
+    .btn-next { background: var(--accent); color: #000; }
+    .btn-reset { background: #374151; color: #fff; }
+
+    .tab-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(22, 31, 48, 0.95); backdrop-filter: blur(12px); display: flex; justify-content: space-around; padding: 8px 0 calc(8px + env(safe-area-inset-bottom)); border-top: 1px solid var(--border); z-index: 100; }
+    .tab-btn { background: none; border: none; color: var(--text-muted); font-size: 10px; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; }
+    .tab-btn.active { color: var(--accent); font-weight: 700; }
+    .tab-btn span.icon { font-size: 20px; }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: fadeIn 0.2s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+    .card { background: var(--card-bg); border-radius: 16px; padding: 16px; margin-bottom: 14px; border: 1px solid var(--border); }
+    .card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; color: #fff; }
+    .badge { font-size: 11px; background: rgba(16, 185, 129, 0.15); color: var(--accent); padding: 3px 8px; border-radius: 6px; }
+    .badge-warm { background: rgba(245, 158, 11, 0.15); color: var(--accent-warm); }
+
+    .meal-block { margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 12px; }
+    .meal-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .meal-header { font-size: 13px; font-weight: 700; color: var(--accent-warm); margin-bottom: 6px; }
+
+    .option-item { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; }
+    .option-item input[type="checkbox"] { appearance: none; -webkit-appearance: none; width: 20px; height: 20px; border: 2px solid #4b5563; border-radius: 6px; background: transparent; cursor: pointer; margin-top: 2px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .option-item input:checked { background: var(--accent); border-color: var(--accent); }
+    .option-item input:checked::after { content: '✓'; color: #000; font-size: 13px; font-weight: 900; }
+    .option-text { font-size: 13px; color: var(--text); line-height: 1.35; }
+
+    .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+    .input-group { display: flex; flex-direction: column; gap: 4px; }
+    .input-group label { font-size: 12px; color: var(--text-muted); }
+    .input-group input { background: #0f172a; border: 1px solid var(--border); border-radius: 8px; padding: 10px; color: #fff; font-size: 14px; outline: none; }
+    .input-group input:focus { border-color: var(--accent); }
+    .btn-full { width: 100%; padding: 12px; background: var(--accent-blue); color: #fff; font-weight: 700; border: none; border-radius: 10px; cursor: pointer; }
+    
+    .history-item { font-size: 12px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>KetoFit Tracker</h1>
+  </header>
+
+  <div class="day-banner">
+    <div class="day-info">
+      <div class="day-title" id="dayDisplay">Día 1 / 75</div>
+      <div class="day-subtitle" id="tuesdayAlert">Martes de medidas</div>
+    </div>
+    <div class="day-actions">
+      <button class="btn-sm btn-reset" onclick="resetToday()">Reset Día</button>
+      <button class="btn-sm btn-next" onclick="nextDay()">Siguiente ➔</button>
+    </div>
+  </div>
+
+  <main id="tab-dieta" class="tab-content active">
+    <div class="card">
+      <div class="card-title">
+        <span>Plan Nutricional (Elegí tu opción)</span>
+        <span class="badge">Keto</span>
+      </div>
+
+      <div class="meal-block">
+        <div class="meal-header">🍳 Almuerzo (12:30 hs)</div>
+        <label class="option-item">
+          <input type="checkbox" id="d_alm_1" onchange="saveChecks()">
+          <div class="option-text"><b>Opción A:</b> 3 huevos revueltos con manteca + 1/2 palta.</div>
+        </label>
+        <label class="option-item">
+          <input type="checkbox" id="d_alm_2" onchange="saveChecks()">
+          <div class="option-text"><b>Opción B:</b> Omelette de 3 huevos con queso y espinaca + ensalada verde.</div>
+        </label>
+        <label class="option-item">
+          <input type="checkbox" id="d_alm_3" onchange="saveChecks()">
+          <div class="option-text"><b>Opción C:</b> 3 huevos duros + atún con aceite de oliva.</div>
+        </label>
+      </div>
+
+      <div class="meal-block">
+        <div class="meal-header">🍓 Merienda / Rescate Dulce (16:30 hs)</div>
+        <label class="option-item">
+          <input type="checkbox" id="d_snk_1" onchange="saveChecks()">
+          <div class="option-text"><b>Opción A:</b> Almendras/nueces tostadas a la sartén con canela y stevia.</div>
+        </label>
+        <label class="option-item">
+          <input type="checkbox" id="d_snk_2" onchange="saveChecks()">
+          <div class="option-text"><b>Opción B:</b> Frutillas o arándanos con crema batida (sin azúcar).</div>
+        </label>
+        <label class="option-item">
+          <input type="checkbox" id="d_snk_3" onchange="saveChecks()">
+          <div class="option-text"><b>Opción C:</b> Mousse express: queso crema + cacao amargo + stevia.</div>
+        </label>
+        <label class="option-item">
+          <input type="checkbox" id="d_snk_4" onchange="saveChecks()">
+          <div class="option-text"><b>Opción D (Pochoclos):</b> 1 taza chica casera con oliva/coco (consumo esporádico).</div>
+        </label>
+      </div>
+
+      <div class="meal-block">
+        <div class="meal-header">🥩 Cena (20:00 hs)</div>
+        <label class="option-item">
+          <input type="checkbox" id="d_cen_1" onchange="saveChecks()">
+          <div class="option-text"><b>Opción A:</b> Suprema de pollo a la plancha + brócoli salteado con oliva.</div>
+        </label>
+        <label class="option-item">
+          <input type="checkbox" id="d_cen_2" onchange="saveChecks()">
+          <div class="option-text"><b>Opción B:</b> Bife / Carne vacuna + revuelto de zapallitos.</div>
+        </label>
+        <label class="option-item">
+          <input type="checkbox" id="d_cen_3" onchange="saveChecks()">
+          <div class="option-text"><b>Opción C:</b> Filete de pescado al horno + espárragos/ensalada de rúcula.</div>
+        </label>
+      </div>
+
+      <div class="meal-block">
+        <div class="meal-header">💧 Hidratación y Sal</div>
+        <label class="option-item">
+          <input type="checkbox" id="d_hid_1" onchange="saveChecks()">
+          <div class="option-text">2.5 L de agua completados + pizca de sal marina / electrolitos.</div>
+        </label>
+      </div>
+    </div>
+  </main>
+
+  <main id="tab-entrenamiento" class="tab-content">
+    <div class="card">
+      <div class="card-title">
+        <span>Día A: Piernas y Glúteos</span>
+        <span class="badge-warm">3 Series × 10-12</span>
+      </div>
+      <label class="option-item"><input type="checkbox" id="w_a1" onchange="saveChecks()"><div class="option-text">Sentadillas con mancuernas</div></label>
+      <label class="option-item"><input type="checkbox" id="w_a2" onchange="saveChecks()"><div class="option-text">Estocadas búlgaras en banco (10 c/pierna)</div></label>
+      <label class="option-item"><input type="checkbox" id="w_a3" onchange="saveChecks()"><div class="option-text">Extensión / Prensa en Multigym</div></label>
+      <label class="option-item"><input type="checkbox" id="w_a4" onchange="saveChecks()"><div class="option-text">15 min Bici Spinning o Caminata inclinada</div></label>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span>Día B: Tren Superior (Espalda/Pecho)</span>
+        <span class="badge-warm">3 Series × 10-12</span>
+      </div>
+      <label class="option-item"><input type="checkbox" id="w_b1" onchange="saveChecks()"><div class="option-text">Jalón al pecho o dominada asistida en Multigym</div></label>
+      <label class="option-item"><input type="checkbox" id="w_b2" onchange="saveChecks()"><div class="option-text">Press de pecho plano con mancuernas</div></label>
+      <label class="option-item"><input type="checkbox" id="w_b3" onchange="saveChecks()"><div class="option-text">Remo a una mano con mancuerna en banco</div></label>
+      <label class="option-item"><input type="checkbox" id="w_b4" onchange="saveChecks()"><div class="option-text">Bíceps en polea + Tríceps en Multigym</div></label>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span>Día C: Full Body y Calistenia</span>
+        <span class="badge-warm">3 Series × 10-12</span>
+      </div>
+      <label class="option-item"><input type="checkbox" id="w_c1" onchange="saveChecks()"><div class="option-text">Peso muerto con mancuernas</div></label>
+      <label class="option-item"><input type="checkbox" id="w_c2" onchange="saveChecks()"><div class="option-text">Press militar de hombros con mancuernas</div></label>
+      <label class="option-item"><input type="checkbox" id="w_c3" onchange="saveChecks()"><div class="option-text">Elevación de rodillas en barra de calistenia</div></label>
+      <label class="option-item"><input type="checkbox" id="w_c4" onchange="saveChecks()"><div class="option-text">20 min máquina de caminar (ritmo constante)</div></label>
+    </div>
+  </main>
+
+  <main id="tab-medidas" class="tab-content">
+    <div class="card">
+      <div class="card-title">
+        <span>Control Semanal (Martes)</span>
+        <span class="badge">Medidas</span>
+      </div>
+      <div class="input-grid">
+        <div class="input-group"><label>Peso (kg)</label><input type="number" id="m_peso" placeholder="ej. 70.5" step="0.1"></div>
+        <div class="input-group"><label>Cintura (cm)</label><input type="number" id="m_cintura" placeholder="ej. 78"></div>
+        <div class="input-group"><label>Cadera (cm)</label><input type="number" id="m_cadera" placeholder="ej. 98"></div>
+        <div class="input-group"><label>Pierna (cm)</label><input type="number" id="m_pierna" placeholder="ej. 56"></div>
+        <div class="input-group" style="grid-column: span 2;"><label>Brazo (cm)</label><input type="number" id="m_brazo" placeholder="ej. 28"></div>
+      </div>
+      <button class="btn-full" onclick="saveMeasurements()">Guardar Registro Semanal</button>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Historial de Progreso</div>
+      <div id="historyList">No hay registros guardados aún.</div>
+    </div>
+  </main>
+
+  <nav class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('tab-dieta', this)"><span class="icon">🥗</span><span>Dieta</span></button>
+    <button class="tab-btn" onclick="switchTab('tab-entrenamiento', this)"><span class="icon">🏋️</span><span>Fuerza</span></button>
+    <button class="tab-btn" onclick="switchTab('tab-medidas', this)"><span class="icon">📏</span><span>Medidas</span></button>
+  </nav>
+
+  <script>
+    function switchTab(id, el) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      el.classList.add('active');
+    }
+
+    let currentDay = parseInt(localStorage.getItem('k75_day') || '1');
+    function updateDayDisplay() {
+      document.getElementById('dayDisplay').innerText = `Día ${currentDay} / 75`;
+      const today = new Date().getDay(); // 2 es Martes
+      document.getElementById('tuesdayAlert').innerText = (today === 2) ? '⚠️ ¡Hoy es Martes: Registrar medidas!' : 'Próximo pesaje: Martes';
+      document.getElementById('tuesdayAlert').style.color = (today === 2) ? '#f59e0b' : '#9ca3af';
+    }
+
+    function nextDay() {
+      if (confirm("¿Avanzar al siguiente día y limpiar los tildes?")) {
+        currentDay++;
+        localStorage.setItem('k75_day', currentDay.toString());
+        resetToday();
+        updateDayDisplay();
+      }
+    }
+
+    function resetToday() {
+      document.querySelectorAll('input[type="checkbox"]').forEach(c => c.checked = false);
+      saveChecks();
+    }
+
+    function saveChecks() {
+      const state = {};
+      document.querySelectorAll('input[type="checkbox"]').forEach(c => {
+        state[c.id] = c.checked;
+      });
+      localStorage.setItem('k75_checks', JSON.stringify(state));
+    }
+
+    function loadChecks() {
+      const state = JSON.parse(localStorage.getItem('k75_checks') || '{}');
+      Object.keys(state).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.checked = state[id];
+      });
+    }
+
+    function saveMeasurements() {
+      const peso = document.getElementById('m_peso').value;
+      const cintura = document.getElementById('m_cintura').value;
+      const cadera = document.getElementById('m_cadera').value;
+      const pierna = document.getElementById('m_pierna').value;
+      const brazo = document.getElementById('m_brazo').value;
+
+      if (!peso) { alert("Ingresá al menos el peso."); return; }
+
+      const record = {
+        date: new Date().toLocaleDateString('es-AR'),
+        day: currentDay,
+        peso, cintura, cadera, pierna, brazo
+      };
+
+      const history = JSON.parse(localStorage.getItem('k75_measurements') || '[]');
+      history.unshift(record);
+      localStorage.setItem('k75_measurements', JSON.stringify(history));
+
+      document.getElementById('m_peso').value = '';
+      document.getElementById('m_cintura').value = '';
+      document.getElementById('m_cadera').value = '';
+      document.getElementById('m_pierna').value = '';
+      document.getElementById('m_brazo').value = '';
+
+      renderHistory();
+      alert("¡Medidas guardadas con éxito!");
+    }
+
+    function renderHistory() {
+      const history = JSON.parse(localStorage.getItem('k75_measurements') || '[]');
+      const container = document.getElementById('historyList');
+      if (history.length === 0) {
+        container.innerHTML = '<span style="font-size:12px; color:#9ca3af;">No hay registros guardados aún.</span>';
+        return;
+      }
+      container.innerHTML = history.map(h => `
+        <div class="history-item">
+          <div><b>${h.date} (Día ${h.day})</b>: ${h.peso} kg</div>
+          <div style="color:#9ca3af;">C: ${h.cintura || '-'}cm | Cad: ${h.cadera || '-'}cm | P: ${h.pierna || '-'}cm | B: ${h.brazo || '-'}cm</div>
+        </div>
+      `).join('');
+    }
+
+    window.onload = () => {
+      updateDayDisplay();
+      loadChecks();
+      renderHistory();
+    };
+  </script>
+</body>
+</html>
