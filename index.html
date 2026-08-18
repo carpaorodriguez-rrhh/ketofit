@@ -24,12 +24,16 @@
     header { text-align: center; padding: 14px 0 10px; }
     h1 { font-size: 22px; font-weight: 800; color: #fff; }
 
-    /* Micro-Tip Box */
+    /* Login Screen */
+    #loginScreen { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--bg); z-index: 500; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 24px; }
+    .login-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 28px 20px; width: 100%; max-width: 360px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    .login-input { width: 100%; background: #0f172a; border: 1px solid var(--border); border-radius: 10px; padding: 12px; color: #fff; font-size: 14px; margin-bottom: 12px; outline: none; }
+    .login-input:focus { border-color: var(--accent); }
+    .btn-login { width: 100%; padding: 14px; background: var(--accent); color: #000; font-weight: 800; border: none; border-radius: 10px; cursor: pointer; font-size: 15px; }
+
     .tip-box { background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(59, 130, 246, 0.1)); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 12px; padding: 10px 14px; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; font-size: 12px; color: #d8b4fe; }
 
-    /* Day Counter Banner */
     .day-banner { background: linear-gradient(135deg, #1e293b, #0f172a); border: 1px solid var(--border); border-radius: 16px; padding: 14px 16px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
-    .day-info { display: flex; flex-direction: column; }
     .day-title { font-size: 20px; font-weight: 800; color: var(--accent); }
     .day-subtitle { font-size: 11px; color: var(--text-muted); }
     .day-actions { display: flex; gap: 8px; }
@@ -37,11 +41,10 @@
     .btn-next { background: var(--accent); color: #000; }
     .btn-reset { background: #374151; color: #fff; }
 
-    /* Tabs */
     .tab-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(22, 31, 48, 0.95); backdrop-filter: blur(12px); display: flex; justify-content: space-around; padding: 8px 0 calc(8px + env(safe-area-inset-bottom)); border-top: 1px solid var(--border); z-index: 100; }
-    .tab-btn { background: none; border: none; color: var(--text-muted); font-size: 10px; display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; }
+    .tab-btn { background: none; border: none; color: var(--text-muted); font-size: 9px; display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; }
     .tab-btn.active { color: var(--accent); font-weight: 700; }
-    .tab-btn span.icon { font-size: 18px; }
+    .tab-btn span.icon { font-size: 17px; }
 
     .tab-content { display: none; }
     .tab-content.active { display: block; animation: fadeIn 0.2s ease-in-out; }
@@ -61,7 +64,11 @@
     .option-item input[type="checkbox"] { appearance: none; -webkit-appearance: none; width: 20px; height: 20px; border: 2px solid #4b5563; border-radius: 6px; background: transparent; cursor: pointer; margin-top: 2px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
     .option-item input:checked { background: var(--accent); border-color: var(--accent); }
     .option-item input:checked::after { content: '✓'; color: #000; font-size: 13px; font-weight: 900; }
-    .option-text { font-size: 13px; color: var(--text); line-height: 1.35; }
+    .option-text { font-size: 13px; color: var(--text); line-height: 1.35; flex: 1; }
+
+    details { margin-top: 4px; font-size: 12px; color: var(--text-muted); }
+    summary { cursor: pointer; color: var(--accent-blue); font-weight: 600; outline: none; margin-top: 2px; }
+    .guide-box { background: #0f172a; padding: 8px 10px; border-radius: 8px; margin-top: 6px; border-left: 3px solid var(--accent-blue); line-height: 1.4; }
 
     textarea { width: 100%; height: 80px; background: #0f172a; border: 1px solid var(--border); border-radius: 10px; padding: 10px; color: #fff; font-size: 13px; resize: none; outline: none; margin-top: 6px; }
     textarea:focus { border-color: var(--accent); }
@@ -70,13 +77,12 @@
     .input-group { display: flex; flex-direction: column; gap: 4px; }
     .input-group label { font-size: 12px; color: var(--text-muted); }
     .input-group input { background: #0f172a; border: 1px solid var(--border); border-radius: 8px; padding: 10px; color: #fff; font-size: 14px; outline: none; }
-    .input-group input:focus { border-color: var(--accent); }
     .btn-full { width: 100%; padding: 12px; background: var(--accent-blue); color: #fff; font-weight: 700; border: none; border-radius: 10px; cursor: pointer; margin-top: 6px; }
-    .btn-notify { width: 100%; padding: 10px; background: rgba(59, 130, 246, 0.15); color: var(--accent-blue); font-weight: 600; border: 1px solid var(--accent-blue); border-radius: 8px; cursor: pointer; margin-bottom: 12px; font-size: 12px; }
     
-    .history-item { font-size: 12px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; }
-    
-    /* Modal Motivacional */
+    .recipe-card { background: #0f172a; border: 1px solid var(--border); border-radius: 12px; padding: 12px; margin-bottom: 10px; }
+    .recipe-title { font-size: 14px; font-weight: 700; color: var(--accent-warm); margin-bottom: 4px; }
+    .recipe-desc { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+
     .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.75); display: none; align-items: center; justify-content: center; z-index: 200; padding: 20px; }
     .modal-card { background: var(--card-bg); border-radius: 16px; padding: 20px; border: 1px solid var(--border); width: 100%; max-width: 360px; text-align: center; animation: fadeIn 0.2s ease-in-out; }
     .modal-title { font-size: 18px; font-weight: 800; margin-bottom: 8px; color: #fff; }
@@ -85,17 +91,35 @@
 </head>
 <body>
 
-  <header>
-    <h1>KetoFit Tracker</h1>
-  </header>
-
-  <!-- MICRO-TIP HORMONAL DIARIO -->
-  <div class="tip-box" id="dailyTipBox">
-    <span style="font-size: 18px;">💡</span>
-    <span id="dailyTipText">Cargando tip del día...</span>
+  <!-- PANTALLA DE ACCESO (LOGIN) -->
+  <div id="loginScreen">
+    <div class="login-card">
+      <div style="font-size: 32px; margin-bottom: 8px;">🥑</div>
+      <h2 style="font-size: 20px; margin-bottom: 4px; color: #fff;">KetoFit 75 Pro</h2>
+      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 20px;">Ingresá tus datos para acceder a tu plan</p>
+      
+      <input type="email" id="loginUser" class="login-input" placeholder="Tu correo registrado">
+      <input type="password" id="loginPass" class="login-input" placeholder="Código de acceso / Clave">
+      <button class="btn-login" onclick="doLogin()">Ingresar a la App</button>
+      
+      <div style="font-size: 11px; color: #64748b; margin-top: 14px;">Acceso exclusivo para alumnas registradas</div>
+    </div>
   </div>
 
-  <!-- BANNER DIARIO -->
+  <!-- APLICACIÓN PRINCIPAL -->
+  <header>
+    <h1>KetoFit Tracker</h1>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 4px;">
+      <span id="userBadge" style="font-size: 11px; color: var(--accent);">Usuario: -</span>
+      <button onclick="doLogout()" style="background: none; border: none; color: #ef4444; font-size: 11px; cursor: pointer; text-decoration: underline;">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <div class="tip-box">
+    <span style="font-size: 18px;">💡</span>
+    <span id="dailyTipText">Cargando tip hormonal...</span>
+  </div>
+
   <div class="day-banner">
     <div class="day-info">
       <div class="day-title" id="dayDisplay">Día 1 / 75</div>
@@ -107,189 +131,169 @@
     </div>
   </div>
 
-  <!-- TAB 1: DIETA CON OPCIONES & OBSERVACIONES -->
+  <!-- TAB 1: DIETA & AYUNO -->
   <main id="tab-dieta" class="tab-content active">
-    <button class="btn-notify" onclick="enableMealNotifications()">🔔 Activar Alertas de Horarios de Comida</button>
+    <div class="card">
+      <div class="card-title">
+        <span>Protocolo de Ayuno</span>
+        <span class="badge-purple">Elegir 1</span>
+      </div>
+      <label class="option-item">
+        <input type="checkbox" id="fast_12" onchange="saveChecks()">
+        <div class="option-text"><b>Ayuno +12 Horas (Amigable):</b> Cena 20:00 hs $\rightarrow$ Desayuno/Almuerzo 08:00–09:00 hs. No estresa el cortisol.</div>
+      </label>
+      <label class="option-item">
+        <input type="checkbox" id="fast_16" onchange="saveChecks()">
+        <div class="option-text"><b>Ayuno 16:8 (Cetosis Profunda):</b> Cena 20:00 hs $\rightarrow$ Romper ayuno 12:30 hs. Agua con sal marina, mate o café solo.</div>
+      </label>
+    </div>
 
     <div class="card">
       <div class="card-title">
-        <span>Plan Nutricional Diario</span>
+        <span>Menús del Día</span>
         <span class="badge">Keto Fácil</span>
       </div>
 
-      <!-- ALMUERZO -->
       <div class="meal-block">
-        <div class="meal-header">🍳 Almuerzo (12:30 hs) - Elegí 1 opción</div>
-        <label class="option-item">
-          <input type="checkbox" id="d_alm_1" class="meal-check" onchange="saveChecks()">
-          <div class="option-text"><b>Opción 1 (Express):</b> Ensalada verde grande + 2 latas de atún + 1/2 palta + aceite de oliva.</div>
-        </label>
-        <label class="option-item">
-          <input type="checkbox" id="d_alm_2" class="meal-check" onchange="saveChecks()">
-          <div class="option-text"><b>Opción 2 (Saciedad):</b> Omelette de 3 huevos con queso cremoso/mozzarella y espinaca salteada.</div>
-        </label>
-        <label class="option-item">
-          <input type="checkbox" id="d_alm_3" class="meal-check" onchange="saveChecks()">
-          <div class="option-text"><b>Opción 3 (Económica):</b> 3 huevos revueltos con manteca + semillas tostadas de girasol o chía.</div>
-        </label>
+        <div class="meal-header">🍳 Almuerzo (12:30 hs)</div>
+        <label class="option-item"><input type="checkbox" id="d_alm_1" class="meal-check" onchange="saveChecks()"><div class="option-text"><b>Opción 1 (Express):</b> Ensalada verde + 2 latas de atún + 1/2 palta + oliva.</div></label>
+        <label class="option-item"><input type="checkbox" id="d_alm_2" class="meal-check" onchange="saveChecks()"><div class="option-text"><b>Opción 2 (Saciedad):</b> Omelette de 3 huevos con queso y espinaca.</div></label>
+        <label class="option-item"><input type="checkbox" id="d_alm_3" class="meal-check" onchange="saveChecks()"><div class="option-text"><b>Opción 3 (Económica):</b> 3 huevos revueltos con manteca + semillas.</div></label>
       </div>
 
-      <!-- RESCATE DULCE -->
       <div class="meal-block">
         <div class="meal-header">🍓 Merienda / Rescate Dulce (16:30 hs)</div>
-        <label class="option-item">
-          <input type="checkbox" id="d_snk_1" class="meal-check" onchange="saveChecks()">
-          <div class="option-text"><b>Opción 1 (Práctica):</b> Puñado de frutos secos (nueces/almendras) a la sartén con canela y stevia.</div>
-        </label>
-        <label class="option-item">
-          <input type="checkbox" id="d_snk_2" class="meal-check" onchange="saveChecks()">
-          <div class="option-text"><b>Opción 2 (Mousse Express):</b> 2 cdas de queso crema + 1 cdita cacao amargo + stevia.</div>
-        </label>
-        <label class="option-item">
-          <input type="checkbox" id="d_snk_3" class="meal-check" onchange="saveChecks()">
-          <div class="option-text"><b>Opción 3 (Fresca):</b> Infusión + crema batida sin azúcar + 4 a 5 frutillas.</div>
-        </label>
-        <label class="option-item">
-          <input type="checkbox" id="d_snk_4" class="meal-check" onchange="saveChecks()">
-          <div class="option-text"><b>Opción 4 (Pochoclos):</b> 1 taza chica casera con oliva/coco (consumo esporádico).</div>
-        </label>
+        <label class="option-item"><input type="checkbox" id="d_snk_1" class="meal-check" onchange="saveChecks()"><div class="option-text"><b>Opción 1:</b> Frutos secos a la sartén con canela y stevia.</div></label>
+        <label class="option-item"><input type="checkbox" id="d_snk_2" class="meal-check" onchange="saveChecks()"><div class="option-text"><b>Opción 2:</b> Mousse express (queso crema + cacao + stevia).</div></label>
+        <label class="option-item"><input type="checkbox" id="d_snk_3" class="meal-check" onchange="saveChecks()"><div class="option-text"><b>Opción 3:</b> Infusión + crema batida sin azúcar + frutillas.</div></label>
+        <label class="option-item"><input type="checkbox" id="d_snk_4" class="meal-check" onchange="saveChecks()"><div class="option-text"><b>Opción 4:</b> Galletitas dulces keto (ver pestaña Recetas).</div></label>
       </div>
 
-      <!-- CENA -->
       <div class="meal-block">
-        <div class="meal-header">🥩 Cena (20:00 hs) - Elegí 1 opción</div>
-        <label class="option-item">
-          <input type="checkbox" id="d_cen_1" class="meal-check" onchange="saveChecks()">
-          <div class="option-text"><b>Opción 1 (Liviana):</b> Pechuga o muslo de pollo al horno/plancha + brócoli al vapor con oliva.</div>
-        </label>
-        <label class="option-item">
-          <input type="checkbox" id="d_cen_2" class="meal-check" onchange="saveChecks()">
-          <div class="option-text"><b>Opción 2 (Proteica):</b> Bife de carne vacuna a la plancha + revuelto de 2 huevos con zapallitos.</div>
-        </label>
-        <label class="option-item">
-          <input type="checkbox" id="d_cen_3" class="meal-check" onchange="saveChecks()">
-          <div class="option-text"><b>Opción 3 (Pescado):</b> Filete de pescado al horno con rodajas de tomate y queso gratinado.</div>
-        </label>
+        <div class="meal-header">🥩 Cena (20:00 hs)</div>
+        <label class="option-item"><input type="checkbox" id="d_cen_1" class="meal-check" onchange="saveChecks()"><div class="option-text"><b>Opción 1:</b> Pollo a la plancha/horno + brócoli al vapor con oliva.</div></label>
+        <label class="option-item"><input type="checkbox" id="d_cen_2" class="meal-check" onchange="saveChecks()"><div class="option-text"><b>Opción 2:</b> Bife de carne vacuna + revuelto de zapallitos.</div></label>
+        <label class="option-item"><input type="checkbox" id="d_cen_3" class="meal-check" onchange="saveChecks()"><div class="option-text"><b>Opción 3:</b> Milanesa keto rebozada en queso/semillas (ver Recetas).</div></label>
       </div>
 
-      <!-- HIDRATACION & ELECTROLITOS -->
       <div class="meal-block">
         <div class="meal-header">💧 Hidratación y Magnesio/Sal</div>
-        <label class="option-item">
-          <input type="checkbox" id="d_hid_1" onchange="saveChecks()">
-          <div class="option-text">2.5 L de agua + pizca de sal marina / magnesio (clave para energía y evitar calambres).</div>
-        </label>
+        <label class="option-item"><input type="checkbox" id="d_hid_1" onchange="saveChecks()"><div class="option-text">2.5 L de agua + pizca de sal marina / magnesio.</div></label>
       </div>
     </div>
 
-    <!-- RECUADRO DE OBSERVACIONES / DESVÍOS -->
     <div class="card">
-      <div class="card-title">
-        <span>📝 Observaciones & Desvíos</span>
-        <span class="badge-warm">Diario</span>
-      </div>
-      <div style="font-size: 12px; color: var(--text-muted);">Anotá antojos, sensaciones o si comiste algo fuera de plan:</div>
-      <textarea id="dailyNotes" placeholder="Ej: Tuve ansiedad a las 18 hs, comí un trozo de queso..." oninput="saveNotes()"></textarea>
+      <div class="card-title"><span>📝 Observaciones & Desvíos</span><span class="badge-warm">Diario</span></div>
+      <textarea id="dailyNotes" placeholder="Anotá antojos o desvíos acá..." oninput="saveNotes()"></textarea>
     </div>
 
     <button class="btn-full" style="background: var(--accent); color: #000; margin-bottom: 20px;" onclick="checkDayProgress()">✨ Evaluar y Cerrar mi Día</button>
   </main>
 
-  <!-- TAB 2: ENTRENAMIENTO Y HÁBITOS DIARIOS -->
+  <!-- TAB 2: ENTRENAMIENTO GUIADO -->
   <main id="tab-entrenamiento" class="tab-content">
     <div class="card">
-      <div class="card-title">
-        <span>Hábitos Diarios Obligatorios</span>
-        <span class="badge-purple">Todos los días</span>
-      </div>
-      <label class="option-item">
-        <input type="checkbox" id="h_walk" class="habit-check" onchange="saveChecks()">
-        <div class="option-text"><b>🚶‍♀️ 5 km de Caminata / Pasos</b> (Cinta o al aire libre para activar metabolismo)</div>
-      </label>
-      <label class="option-item">
-        <input type="checkbox" id="h_sleep" class="habit-check" onchange="saveChecks()">
-        <div class="option-text"><b>😴 Dormir 8 Horas</b> (Baja el cortisol y quema grasa en reposo)</div>
-      </label>
+      <div class="card-title"><span>Hábitos Diarios</span><span class="badge-purple">Obligatorio</span></div>
+      <label class="option-item"><input type="checkbox" id="h_walk" class="habit-check" onchange="saveChecks()"><div class="option-text"><b>🚶‍♀️ 5 km de Caminata / Pasos</b> (Cinta o al aire libre)</div></label>
+      <label class="option-item"><input type="checkbox" id="h_sleep" class="habit-check" onchange="saveChecks()"><div class="option-text"><b>😴 Dormir 8 Horas</b> (Baja el cortisol)</div></label>
     </div>
 
     <div class="card">
-      <div class="card-title">
-        <span>Día A: Piernas y Glúteos</span>
-        <span class="badge-warm">3 Series × 10-12</span>
+      <div class="card-title"><span>Día A: Piernas y Glúteos</span><span class="badge-warm">3x10-12</span></div>
+      <div class="meal-block">
+        <label class="option-item"><input type="checkbox" id="w_a1" class="workout-check" onchange="saveChecks()"><div class="option-text"><b>1. Sentadillas con mancuernas / Prensa</b>
+          <details><summary>¿Cómo se hace?</summary><div class="guide-box">Pies al ancho de hombros. Bajá la cadera hacia atrás manteniendo la espalda recta y el pecho erguido.</div></details>
+        </div></label>
       </div>
-      <label class="option-item"><input type="checkbox" id="w_a1" class="workout-check" onchange="saveChecks()"><div class="option-text">Sentadillas con mancuernas</div></label>
-      <label class="option-item"><input type="checkbox" id="w_a2" class="workout-check" onchange="saveChecks()"><div class="option-text">Estocadas búlgaras en banco (10 c/pierna)</div></label>
-      <label class="option-item"><input type="checkbox" id="w_a3" class="workout-check" onchange="saveChecks()"><div class="option-text">Extensión / Prensa en Multigym</div></label>
-      <label class="option-item"><input type="checkbox" id="w_a4" class="workout-check" onchange="saveChecks()"><div class="option-text">15 min Bici Spinning o Cinta con pendiente</div></label>
+      <div class="meal-block">
+        <label class="option-item"><input type="checkbox" id="w_a2" class="workout-check" onchange="saveChecks()"><div class="option-text"><b>2. Estocadas búlgaras en banco</b>
+          <details><summary>¿Cómo se hace?</summary><div class="guide-box">Un pie adelantado y el empeine del otro en el banco. Flexioná la rodilla delantera bajando la cadera en vertical.</div></details>
+        </div></label>
+      </div>
+      <div class="meal-block">
+        <label class="option-item"><input type="checkbox" id="w_a3" class="workout-check" onchange="saveChecks()"><div class="option-text"><b>3. Elevación de cadera (Hip Thrust)</b>
+          <details><summary>¿Cómo se hace?</summary><div class="guide-box">Espalda alta en banco. Empujá con talones elevando la pelvis y apretá glúteos 2 segundos arriba.</div></details>
+        </div></label>
+      </div>
     </div>
 
     <div class="card">
-      <div class="card-title">
-        <span>Día B: Tren Superior (Espalda/Pecho)</span>
-        <span class="badge-warm">3 Series × 10-12</span>
+      <div class="card-title"><span>Día B: Tren Superior</span><span class="badge-warm">3x10-12</span></div>
+      <div class="meal-block">
+        <label class="option-item"><input type="checkbox" id="w_b1" class="workout-check" onchange="saveChecks()"><div class="option-text"><b>1. Press de pecho plano con mancuernas</b>
+          <details><summary>¿Cómo se hace?</summary><div class="guide-box">Acostada en banco, empujá las mancuernas hacia arriba sobre el pecho sin trabar codos con brusquedad.</div></details>
+        </div></label>
       </div>
-      <label class="option-item"><input type="checkbox" id="w_b1" class="workout-check" onchange="saveChecks()"><div class="option-text">Jalón al pecho o dominada asistida en Multigym</div></label>
-      <label class="option-item"><input type="checkbox" id="w_b2" class="workout-check" onchange="saveChecks()"><div class="option-text">Press de pecho plano con mancuernas</div></label>
-      <label class="option-item"><input type="checkbox" id="w_b3" class="workout-check" onchange="saveChecks()"><div class="option-text">Remo a una mano con mancuerna en banco</div></label>
-      <label class="option-item"><input type="checkbox" id="w_b4" class="workout-check" onchange="saveChecks()"><div class="option-text">Bíceps en polea + Tríceps en Multigym</div></label>
+      <div class="meal-block">
+        <label class="option-item"><input type="checkbox" id="w_b2" class="workout-check" onchange="saveChecks()"><div class="option-text"><b>2. Jalón al pecho en Multigym / Remo</b>
+          <details><summary>¿Cómo se hace?</summary><div class="guide-box">Tirá la barra al pecho juntando omóplatos y manteniendo el torso firme sin balanceos.</div></details>
+        </div></label>
+      </div>
+      <div class="meal-block">
+        <label class="option-item"><input type="checkbox" id="w_b3" class="workout-check" onchange="saveChecks()"><div class="option-text"><b>3. Fondos de tríceps en banco + Bíceps</b>
+          <details><summary>¿Cómo se hace?</summary><div class="guide-box">Manos en el borde del banco, flexioná codos a 90° bajando la cadera pegada al banco y empujá hacia arriba.</div></details>
+        </div></label>
+      </div>
     </div>
 
     <div class="card">
-      <div class="card-title">
-        <span>Día C: Full Body y Core</span>
-        <span class="badge-warm">3 Series × 10-12</span>
+      <div class="card-title"><span>Día C: Hombros y Core</span><span class="badge-warm">3x10-12</span></div>
+      <div class="meal-block">
+        <label class="option-item"><input type="checkbox" id="w_c1" class="workout-check" onchange="saveChecks()"><div class="option-text"><b>1. Press militar y elevaciones laterales</b>
+          <details><summary>¿Cómo se hace?</summary><div class="guide-box">Empujá mancuernas desde las orejas arriba. Luego de pie, abrí brazos hasta la altura de los hombros.</div></details>
+        </div></label>
       </div>
-      <label class="option-item"><input type="checkbox" id="w_c1" class="workout-check" onchange="saveChecks()"><div class="option-text">Peso muerto con mancuernas</div></label>
-      <label class="option-item"><input type="checkbox" id="w_c2" class="workout-check" onchange="saveChecks()"><div class="option-text">Press militar de hombros con mancuernas</div></label>
-      <label class="option-item"><input type="checkbox" id="w_c3" class="workout-check" onchange="saveChecks()"><div class="option-text">Elevación de rodillas en barra de calistenia</div></label>
+      <div class="meal-block">
+        <label class="option-item"><input type="checkbox" id="w_c2" class="workout-check" onchange="saveChecks()"><div class="option-text"><b>2. Elevación de rodillas en barra</b>
+          <details><summary>¿Cómo se hace?</summary><div class="guide-box">Colgada de la barra, elevá rodillas hacia el pecho contrayendo abdomen sin balancearte.</div></details>
+        </div></label>
+      </div>
     </div>
   </main>
 
-  <!-- TAB 3: LISTA DE COMPRAS SEMANAL INTELIGENTE -->
+  <!-- TAB 3: RECETAS KETO RÁPIDAS -->
+  <main id="tab-recetas" class="tab-content">
+    <div class="card">
+      <div class="card-title"><span>📖 Recetas Keto Express</span><span class="badge">Fáciles</span></div>
+      <div class="recipe-card">
+        <div class="recipe-title">🍪 Galletitas Dulces Keto (5 Minutos)</div>
+        <div class="recipe-desc"><b>Ingredientes:</b> 1 taza harina de almendras/coco, 1 huevo, 2 cdas manteca derretida, vainilla y stevia.<br><b>Preparación:</b> Mezclá todo, armá bolitas, aplastalas en placa y horneá 10 min a 180°C.</div>
+      </div>
+      <div class="recipe-card">
+        <div class="recipe-title">🍝 Fideos Keto de Zucchini (Zoodles)</div>
+        <div class="recipe-desc"><b>Ingredientes:</b> 2 zucchinis en tiras finas, 1 cda oliva, salsa casera o crema con queso.<br><b>Preparación:</b> Salteá 3 min en sartén bien caliente, agregá salsa y queso abundante.</div>
+      </div>
+      <div class="recipe-card">
+        <div class="recipe-title">🥩 Milanesas Keto Crocantes</div>
+        <div class="recipe-desc"><b>Rebozador:</b> 50% queso rallado seco + 50% semillas trituradas/harina almendras.<br><b>Preparación:</b> Pasá carne o pollo por huevo batido, rebozá con la mezcla y horneá o freí con oliva.</div>
+      </div>
+    </div>
+  </main>
+
+  <!-- TAB 4: COMPRAS -->
   <main id="tab-compras" class="tab-content">
     <div class="card">
-      <div class="card-title">
-        <span>🛒 Lista de Compras Inteligente</span>
-        <button class="btn-sm btn-reset" onclick="resetShopping()">Limpiar Todo</button>
-      </div>
-      <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">Comprás todo en 15 minutos en cualquier supermercado común:</div>
-
+      <div class="card-title"><span>🛒 Lista de Compras</span><button class="btn-sm btn-reset" onclick="resetShopping()">Limpiar</button></div>
       <div class="meal-block">
         <div class="meal-header">🥚 Proteínas y Lácteos</div>
-        <label class="option-item"><input type="checkbox" id="c_1" onchange="saveShopping()"><div class="option-text">Huevos (mínimo 2 o 3 maples / bandejas)</div></label>
-        <label class="option-item"><input type="checkbox" id="c_2" onchange="saveShopping()"><div class="option-text">Carne vacuna (bifes / picada especial)</div></label>
-        <label class="option-item"><input type="checkbox" id="c_3" onchange="saveShopping()"><div class="option-text">Pechugas o muslos de pollo</div></label>
-        <label class="option-item"><input type="checkbox" id="c_4" onchange="saveShopping()"><div class="option-text">Atún en lata (al agua o en aceite de oliva) / Filetes de pescado</div></label>
-        <label class="option-item"><input type="checkbox" id="c_5" onchange="saveShopping()"><div class="option-text">Queso cremoso, mozzarella o ricota entera</div></label>
-        <label class="option-item"><input type="checkbox" id="c_6" onchange="saveShopping()"><div class="option-text">Manteca de buena calidad y Crema de leche</div></label>
+        <label class="option-item"><input type="checkbox" id="c_1" onchange="saveShopping()"><div class="option-text">Huevos (2 a 3 maples)</div></label>
+        <label class="option-item"><input type="checkbox" id="c_2" onchange="saveShopping()"><div class="option-text">Carne vacuna (bifes/milanesas) y Pollo</div></label>
+        <label class="option-item"><input type="checkbox" id="c_3" onchange="saveShopping()"><div class="option-text">Atún en lata / Pescado</div></label>
+        <label class="option-item"><input type="checkbox" id="c_4" onchange="saveShopping()"><div class="option-text">Queso cremoso, mozzarella, manteca y crema</div></label>
       </div>
-
       <div class="meal-block">
-        <div class="meal-header">🥦 Verdulería (Bajos Carbohidratos)</div>
-        <label class="option-item"><input type="checkbox" id="c_7" onchange="saveShopping()"><div class="option-text">Paltas (aguacate)</div></label>
-        <label class="option-item"><input type="checkbox" id="c_8" onchange="saveShopping()"><div class="option-text">Hojas verdes (espinaca, rúcula, lechuga)</div></label>
-        <label class="option-item"><input type="checkbox" id="c_9" onchange="saveShopping()"><div class="option-text">Zapallitos verdes, brócoli y espárragos</div></label>
-        <label class="option-item"><input type="checkbox" id="c_10" onchange="saveShopping()"><div class="option-text">Frutillas o arándanos frescos/congelados</div></label>
-      </div>
-
-      <div class="meal-block">
-        <div class="meal-header">🥜 Alacena & Rescate Dulce</div>
-        <label class="option-item"><input type="checkbox" id="c_11" onchange="saveShopping()"><div class="option-text">Aceite de oliva virgen extra</div></label>
-        <label class="option-item"><input type="checkbox" id="c_12" onchange="saveShopping()"><div class="option-text">Nueces, almendras o semillas (chía/girasol)</div></label>
-        <label class="option-item"><input type="checkbox" id="c_13" onchange="saveShopping()"><div class="option-text">Cacao amargo 100% puro en polvo</div></label>
-        <label class="option-item"><input type="checkbox" id="c_14" onchange="saveShopping()"><div class="option-text">Stevia pura líquida o en polvo + Canela</div></label>
-        <label class="option-item"><input type="checkbox" id="c_15" onchange="saveShopping()"><div class="option-text">Sal marina o sal del Himalaya</div></label>
+        <div class="meal-header">🥦 Verdulería y Alacena</div>
+        <label class="option-item"><input type="checkbox" id="c_5" onchange="saveShopping()"><div class="option-text">Paltas, espinaca, zapallitos verdes y brócoli</div></label>
+        <label class="option-item"><input type="checkbox" id="c_6" onchange="saveShopping()"><div class="option-text">Harina de almendras o coco y cacao puro 100%</div></label>
+        <label class="option-item"><input type="checkbox" id="c_7" onchange="saveShopping()"><div class="option-text">Aceite de oliva virgen extra y sal marina</div></label>
       </div>
     </div>
   </main>
 
-  <!-- TAB 4: MEDIDAS Y PESO (MARTES) -->
+  <!-- TAB 5: MEDIDAS (MARTES) -->
   <main id="tab-medidas" class="tab-content">
     <div class="card">
-      <div class="card-title">
-        <span>Control Semanal (Martes)</span>
-        <span class="badge">Medidas</span>
-      </div>
+      <div class="card-title"><span>Control Semanal (Martes)</span><span class="badge">Medidas</span></div>
       <div class="input-grid">
         <div class="input-group"><label>Peso (kg)</label><input type="number" id="m_peso" placeholder="ej. 70.5" step="0.1"></div>
         <div class="input-group"><label>Cintura (cm)</label><input type="number" id="m_cintura" placeholder="ej. 78"></div>
@@ -299,39 +303,72 @@
       </div>
       <button class="btn-full" onclick="saveMeasurements()">Guardar Registro Semanal</button>
     </div>
-
     <div class="card">
       <div class="card-title">Historial de Progreso</div>
       <div id="historyList">No hay registros guardados aún.</div>
     </div>
   </main>
 
-  <!-- BARRA DE NAVEGACION INFERIOR -->
   <nav class="tab-nav">
     <button class="tab-btn active" onclick="switchTab('tab-dieta', this)"><span class="icon">🥗</span><span>Dieta</span></button>
     <button class="tab-btn" onclick="switchTab('tab-entrenamiento', this)"><span class="icon">🏋️</span><span>Fuerza</span></button>
+    <button class="tab-btn" onclick="switchTab('tab-recetas', this)"><span class="icon">📖</span><span>Recetas</span></button>
     <button class="tab-btn" onclick="switchTab('tab-compras', this)"><span class="icon">🛒</span><span>Compras</span></button>
     <button class="tab-btn" onclick="switchTab('tab-medidas', this)"><span class="icon">📏</span><span>Medidas</span></button>
   </nav>
 
-  <!-- MODAL BALANCE MOTIVACIONAL -->
   <div class="modal-overlay" id="motivationModal">
     <div class="modal-card">
       <div class="modal-title" id="modalTitle">¡Balance Diario!</div>
-      <div class="modal-msg" id="modalBody">Mensaje motivador...</div>
+      <div class="modal-msg" id="modalBody">Mensaje...</div>
       <button class="btn-full" style="background: var(--accent); color: #000;" onclick="closeModal()">¡A por el siguiente día!</button>
     </div>
   </div>
 
   <script>
+    const validUsers = {
+      "admin@ketofit.com": "keto2026",
+      "prueba@ketofit.com": "123456",
+      "cliente1@gmail.com": "acceso75",
+      "carla@ketofit.com": "admin75"
+    };
+
+    function checkLoginStatus() {
+      const activeUser = localStorage.getItem('k75_logged_user');
+      if (activeUser) {
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('userBadge').innerText = 'Usuario: ' + activeUser;
+      } else {
+        document.getElementById('loginScreen').style.display = 'flex';
+      }
+    }
+
+    function doLogin() {
+      const user = document.getElementById('loginUser').value.trim().toLowerCase();
+      const pass = document.getElementById('loginPass').value.trim();
+
+      if (validUsers[user] && validUsers[user] === pass) {
+        localStorage.setItem('k75_logged_user', user);
+        checkLoginStatus();
+      } else {
+        alert("Usuario o contraseña incorrectos. Verificá los datos enviados por Hotmart o mail.");
+      }
+    }
+
+    function doLogout() {
+      if (confirm("¿Cerrar sesión de la app?")) {
+        localStorage.removeItem('k75_logged_user');
+        checkLoginStatus();
+      }
+    }
+
     const microTips = [
-      "La proteína y la fuerza protegen tus músculos y aceleran el metabolismo a cualquier edad.",
-      "El agua con sal marina en ayunas previene la fatiga y equilibra tus electrolitos.",
-      "Dormir 8 horas reduce el cortisol, la hormona que bloquea la quema de grasa abdominal.",
-      "No necesitas contar calorías al gramo: priorizá comida real y grasas saludables.",
-      "Si tenés un antojo dulce, la mousse express con cacao y stevia frena el impulso en 5 minutos.",
-      "Caminar 5 km diarios activa la captación de glucosa en los músculos sin desgastar tus articulaciones.",
-      "La constancia en la semana vale mucho más que la perfección de un solo día."
+      "La proteína y el entrenamiento de fuerza evitan la pérdida muscular en mujeres +49.",
+      "El ayuno de 12 a 16 hs regula la glucosa sin disparar el cortisol ni alterar el sueño.",
+      "El agua con sal marina en ayunas previene calambres y mantiene tu energía alta.",
+      "Si tenés antojo dulce por la tarde, las galletitas keto o la mousse frenan el impulso en 5 min.",
+      "Caminar 5 km diarios activa la quema de grasas sin sobrecargar tus articulaciones.",
+      "No cuentes calorías al gramo: priorizá comida real, saciedad y grasas buenas."
     ];
 
     function updateTip() {
@@ -405,7 +442,7 @@
     }
 
     function resetShopping() {
-      if (confirm("¿Reiniciar la lista de compras del supermercado?")) {
+      if (confirm("¿Reiniciar la lista de compras?")) {
         document.querySelectorAll('#tab-compras input[type="checkbox"]').forEach(c => c.checked = false);
         saveShopping();
       }
@@ -416,26 +453,11 @@
       localStorage.setItem(`k75_notes_day_${currentDay}`, text);
     }
 
-    function enableMealNotifications() {
-      if (!("Notification" in window)) {
-        alert("Agregá recordatorios en tu iPhone para los horarios 12:30, 16:30 y 20:00.");
-        return;
-      }
-      Notification.requestPermission().then(permission => {
-        if (permission === "granted") {
-          new Notification("KetoFit 75", { body: "¡Notificaciones activadas! Te avisaremos en los horarios de comida." });
-        } else {
-          alert("Podés usar la app Recordatorios de tu iPhone.");
-        }
-      });
-    }
-
     function checkDayProgress() {
       const almCheck = document.getElementById('d_alm_1').checked || document.getElementById('d_alm_2').checked || document.getElementById('d_alm_3').checked;
       const snkCheck = document.getElementById('d_snk_1').checked || document.getElementById('d_snk_2').checked || document.getElementById('d_snk_3').checked || document.getElementById('d_snk_4').checked;
       const cenCheck = document.getElementById('d_cen_1').checked || document.getElementById('d_cen_2').checked || document.getElementById('d_cen_3').checked;
       const hidCheck = document.getElementById('d_hid_1').checked;
-
       const walkCheck = document.getElementById('h_walk').checked;
       const sleepCheck = document.getElementById('h_sleep').checked;
       const anyWorkout = Array.from(document.querySelectorAll('.workout-check')).some(c => c.checked);
@@ -449,11 +471,11 @@
       if (is100) {
         title.innerText = "🌟 ¡DÍA 100% CUMPLIDO! 🌟";
         title.style.color = "var(--accent)";
-        body.innerHTML = `¡Impresionante disciplina en el <b>Día ${currentDay}</b>!<br><br>Completaste la dieta Keto, tus 5 km de caminata, tu descanso y la rutina de fuerza. Tu cuerpo está quemando grasa como energía. ¡A descansar y mantener este ritmo mañana!`;
+        body.innerHTML = `¡Impresionante disciplina en el <b>Día ${currentDay}</b>!<br><br>Completaste la nutrición, tus 5 km de caminata, tu descanso y el entrenamiento de fuerza. Tu cuerpo quema grasa como fuente de energía limpia. ¡A descansar y mantener este ritmo mañana!`;
       } else {
         title.innerText = "💪 ¡Gran Esfuerzo!";
         title.style.color = "var(--accent-warm)";
-        body.innerHTML = `Completaste una parte importante de tu <b>Día ${currentDay}</b>.<br><br>Cada paso y cada comida alineada suma. Si hubo algún desvío o faltó algún ítem, lo registraste en tus observaciones y mañana tenés una nueva oportunidad para buscar ese 100%. ¡La constancia le gana a la perfección!`;
+        body.innerHTML = `Completaste una parte fundamental de tu <b>Día ${currentDay}</b>.<br><br>Cada comida y hábito tildado cuenta. Si hubo algún desvío, lo registraste en observaciones y mañana seguimos con todo. ¡La constancia supera a la perfección!`;
       }
 
       modal.style.display = "flex";
@@ -508,6 +530,7 @@
     }
 
     window.onload = () => {
+      checkLoginStatus();
       updateDayDisplay();
       loadChecks();
       loadShopping();
