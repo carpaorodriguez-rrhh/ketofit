@@ -86,12 +86,12 @@
     .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.75); display: none; align-items: center; justify-content: center; z-index: 200; padding: 20px; }
     .modal-card { background: var(--card-bg); border-radius: 16px; padding: 20px; border: 1px solid var(--border); width: 100%; max-width: 360px; text-align: center; animation: fadeIn 0.2s ease-in-out; }
     .modal-title { font-size: 18px; font-weight: 800; margin-bottom: 8px; color: #fff; }
-    .modal-msg { font-size: 13px; line-height: 1.4; color: var(--text-muted); margin-bottom: 16px; }
+    .modal-msg { font-size: 13px; line-height: 1.4; color: var(--text-muted); margin-bottom: 16px; text-align: left; }
   </style>
 </head>
 <body>
 
-  <!-- PANTALLA DE ACCESO (LOGIN) -->
+  <!-- LOGIN -->
   <div id="loginScreen">
     <div class="login-card">
       <div style="font-size: 32px; margin-bottom: 8px;">🥑</div>
@@ -106,7 +106,7 @@
     </div>
   </div>
 
-  <!-- APLICACIÓN PRINCIPAL -->
+  <!-- APP PRINCIPAL -->
   <header>
     <h1>KetoFit Tracker</h1>
     <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 4px;">
@@ -139,12 +139,12 @@
         <span class="badge-purple">Elegir 1</span>
       </div>
       <label class="option-item">
-        <input type="checkbox" id="fast_12" onchange="saveChecks()">
-        <div class="option-text"><b>Ayuno +12 Horas (Amigable):</b> Cena 20:00 hs $\rightarrow$ Desayuno/Almuerzo 08:00–09:00 hs. No estresa el cortisol.</div>
+        <input type="checkbox" id="fast_12" class="fast-check" onchange="saveChecks()">
+        <div class="option-text"><b>Ayuno +12 Horas (Amigable):</b> Cena 20:00 hs &rarr; Desayuno/Almuerzo 08:00–09:00 hs. No estresa el cortisol.</div>
       </label>
       <label class="option-item">
-        <input type="checkbox" id="fast_16" onchange="saveChecks()">
-        <div class="option-text"><b>Ayuno 16:8 (Cetosis Profunda):</b> Cena 20:00 hs $\rightarrow$ Romper ayuno 12:30 hs. Agua con sal marina, mate o café solo.</div>
+        <input type="checkbox" id="fast_16" class="fast-check" onchange="saveChecks()">
+        <div class="option-text"><b>Ayuno 16:8 (Cetosis Profunda):</b> Cena 20:00 hs &rarr; Romper ayuno 12:30 hs. Agua con sal marina, mate o café solo.</div>
       </label>
     </div>
 
@@ -155,29 +155,29 @@
       </div>
 
       <div class="meal-block">
-        <div class="meal-header">🍳 Almuerzo (12:30 hs)</div>
-        <label class="option-item"><input type="checkbox" id="d_alm_1" class="meal-check" onchange="saveChecks()"><div class="option-text"><b>Opción 1 (Express):</b> Ensalada verde + 2 latas de atún + 1/2 palta + oliva.</div></label>
-        <label class="option-item"><input type="checkbox" id="d_alm_2" class="meal-check" onchange="saveChecks()"><div class="option-text"><b>Opción 2 (Saciedad):</b> Omelette de 3 huevos con queso y espinaca.</div></label>
-        <label class="option-item"><input type="checkbox" id="d_alm_3" class="meal-check" onchange="saveChecks()"><div class="option-text"><b>Opción 3 (Económica):</b> 3 huevos revueltos con manteca + semillas.</div></label>
+        <div class="meal-header">🍳 Almuerzo (12:30 hs) - Elegí 1</div>
+        <label class="option-item"><input type="checkbox" id="d_alm_1" class="meal-alm-check" onchange="saveChecks()"><div class="option-text"><b>Opción 1:</b> Ensalada verde grande + 2 latas de atún + 1/2 palta + aceite de oliva.</div></label>
+        <label class="option-item"><input type="checkbox" id="d_alm_2" class="meal-alm-check" onchange="saveChecks()"><div class="option-text"><b>Opción 2:</b> Omelette de 3 huevos con queso y espinaca salteada.</div></label>
+        <label class="option-item"><input type="checkbox" id="d_alm_3" class="meal-alm-check" onchange="saveChecks()"><div class="option-text"><b>Opción 3:</b> 3 huevos revueltos con manteca + semillas tostadas.</div></label>
       </div>
 
       <div class="meal-block">
-        <div class="meal-header">🍓 Merienda / Rescate Dulce (16:30 hs)</div>
-        <label class="option-item"><input type="checkbox" id="d_snk_1" class="meal-check" onchange="saveChecks()"><div class="option-text"><b>Opción 1:</b> Frutos secos a la sartén con canela y stevia.</div></label>
-        <label class="option-item"><input type="checkbox" id="d_snk_2" class="meal-check" onchange="saveChecks()"><div class="option-text"><b>Opción 2:</b> Mousse express (queso crema + cacao + stevia).</div></label>
-        <label class="option-item"><input type="checkbox" id="d_snk_3" class="meal-check" onchange="saveChecks()"><div class="option-text"><b>Opción 3:</b> Infusión + crema batida sin azúcar + frutillas.</div></label>
-        <label class="option-item"><input type="checkbox" id="d_snk_4" class="meal-check" onchange="saveChecks()"><div class="option-text"><b>Opción 4:</b> Galletitas dulces keto (ver pestaña Recetas).</div></label>
+        <div class="meal-header">🍓 Merienda / Rescate Dulce (16:30 hs) - Elegí 1</div>
+        <label class="option-item"><input type="checkbox" id="d_snk_1" class="meal-snk-check" onchange="saveChecks()"><div class="option-text"><b>Opción 1:</b> Frutos secos a la sartén con canela y stevia.</div></label>
+        <label class="option-item"><input type="checkbox" id="d_snk_2" class="meal-snk-check" onchange="saveChecks()"><div class="option-text"><b>Opción 2:</b> Mousse express (queso crema + cacao amargo puro + stevia).</div></label>
+        <label class="option-item"><input type="checkbox" id="d_snk_3" class="meal-snk-check" onchange="saveChecks()"><div class="option-text"><b>Opción 3:</b> Yogur griego natural / Kéfir sin azúcar + nueces y semillas.</div></label>
+        <label class="option-item"><input type="checkbox" id="d_snk_4" class="meal-snk-check" onchange="saveChecks()"><div class="option-text"><b>Opción 4:</b> Galletitas dulces keto (ver pestaña Recetas).</div></label>
       </div>
 
       <div class="meal-block">
-        <div class="meal-header">🥩 Cena (20:00 hs)</div>
-        <label class="option-item"><input type="checkbox" id="d_cen_1" class="meal-check" onchange="saveChecks()"><div class="option-text"><b>Opción 1:</b> Pollo a la plancha/horno + brócoli al vapor con oliva.</div></label>
-        <label class="option-item"><input type="checkbox" id="d_cen_2" class="meal-check" onchange="saveChecks()"><div class="option-text"><b>Opción 2:</b> Bife de carne vacuna + revuelto de zapallitos.</div></label>
-        <label class="option-item"><input type="checkbox" id="d_cen_3" class="meal-check" onchange="saveChecks()"><div class="option-text"><b>Opción 3:</b> Milanesa keto rebozada en queso/semillas (ver Recetas).</div></label>
+        <div class="meal-header">🥩 Cena (20:00 hs) - Elegí 1</div>
+        <label class="option-item"><input type="checkbox" id="d_cen_1" class="meal-cen-check" onchange="saveChecks()"><div class="option-text"><b>Opción 1:</b> Pollo a la plancha/horno + brócoli al vapor con oliva.</div></label>
+        <label class="option-item"><input type="checkbox" id="d_cen_2" class="meal-cen-check" onchange="saveChecks()"><div class="option-text"><b>Opción 2:</b> Bife de carne vacuna + revuelto de zapallitos.</div></label>
+        <label class="option-item"><input type="checkbox" id="d_cen_3" class="meal-cen-check" onchange="saveChecks()"><div class="option-text"><b>Opción 3:</b> Milanesa keto rebozada en queso/semillas (ver Recetas).</div></label>
       </div>
 
       <div class="meal-block">
-        <div class="meal-header">💧 Hidratación y Magnesio/Sal</div>
+        <div class="meal-header">💧 Hidratación y Sal/Magnesio</div>
         <label class="option-item"><input type="checkbox" id="d_hid_1" onchange="saveChecks()"><div class="option-text">2.5 L de agua + pizca de sal marina / magnesio.</div></label>
       </div>
     </div>
@@ -187,27 +187,27 @@
       <textarea id="dailyNotes" placeholder="Anotá antojos o desvíos acá..." oninput="saveNotes()"></textarea>
     </div>
 
-    <button class="btn-full" style="background: var(--accent); color: #000; margin-bottom: 20px;" onclick="checkDayProgress()">✨ Evaluar y Cerrar mi Día</button>
+    <button class="btn-full" style="background: var(--accent); color: #000; margin-bottom: 20px;" onclick="checkDayProgress()">✨ Cerrar y Evaluar mi Día Completo</button>
   </main>
 
-  <!-- TAB 2: ENTRENAMIENTO GUIADO -->
+  <!-- TAB 2: ENTRENAMIENTO -->
   <main id="tab-entrenamiento" class="tab-content">
     <div class="card">
       <div class="card-title"><span>Hábitos Diarios</span><span class="badge-purple">Obligatorio</span></div>
       <label class="option-item"><input type="checkbox" id="h_walk" class="habit-check" onchange="saveChecks()"><div class="option-text"><b>🚶‍♀️ 5 km de Caminata / Pasos</b> (Cinta o al aire libre)</div></label>
-      <label class="option-item"><input type="checkbox" id="h_sleep" class="habit-check" onchange="saveChecks()"><div class="option-text"><b>😴 Dormir 8 Horas</b> (Baja el cortisol)</div></label>
+      <label class="option-item"><input type="checkbox" id="h_sleep" class="habit-check" onchange="saveChecks()"><div class="option-text"><b>😴 Dormir 8 Horas</b> (Baja el cortisol y quema grasa en reposo)</div></label>
     </div>
 
     <div class="card">
       <div class="card-title"><span>Día A: Piernas y Glúteos</span><span class="badge-warm">3x10-12</span></div>
       <div class="meal-block">
         <label class="option-item"><input type="checkbox" id="w_a1" class="workout-check" onchange="saveChecks()"><div class="option-text"><b>1. Sentadillas con mancuernas / Prensa</b>
-          <details><summary>¿Cómo se hace?</summary><div class="guide-box">Pies al ancho de hombros. Bajá la cadera hacia atrás manteniendo la espalda recta y el pecho erguido.</div></details>
+          <details><summary>¿Cómo se hace?</summary><div class="guide-box">Pies al ancho de hombros. Bajá la cadera hacia atrás manteniendo espalda recta y pecho erguido.</div></details>
         </div></label>
       </div>
       <div class="meal-block">
         <label class="option-item"><input type="checkbox" id="w_a2" class="workout-check" onchange="saveChecks()"><div class="option-text"><b>2. Estocadas búlgaras en banco</b>
-          <details><summary>¿Cómo se hace?</summary><div class="guide-box">Un pie adelantado y el empeine del otro en el banco. Flexioná la rodilla delantera bajando la cadera en vertical.</div></details>
+          <details><summary>¿Cómo se hace?</summary><div class="guide-box">Un pie adelantado y el empeine del otro en banco. Flexioná la rodilla delantera bajando cadera en vertical.</div></details>
         </div></label>
       </div>
       <div class="meal-block">
@@ -220,7 +220,7 @@
     <div class="card">
       <div class="card-title"><span>Día B: Tren Superior</span><span class="badge-warm">3x10-12</span></div>
       <div class="meal-block">
-        <label class="option-item"><input type="checkbox" id="w_b1" class="workout-check" onchange="saveChecks()"><div class="option-text"><b>1. Press de pecho plano con mancuernas</b>
+        <label class="option-item"><input type="checkbox" id="w_b1" class="workout-check" onchange="saveChecks()"><div class="option-text"><b>1. Press de pecho con mancuernas</b>
           <details><summary>¿Cómo se hace?</summary><div class="guide-box">Acostada en banco, empujá las mancuernas hacia arriba sobre el pecho sin trabar codos con brusquedad.</div></details>
         </div></label>
       </div>
@@ -231,7 +231,7 @@
       </div>
       <div class="meal-block">
         <label class="option-item"><input type="checkbox" id="w_b3" class="workout-check" onchange="saveChecks()"><div class="option-text"><b>3. Fondos de tríceps en banco + Bíceps</b>
-          <details><summary>¿Cómo se hace?</summary><div class="guide-box">Manos en el borde del banco, flexioná codos a 90° bajando la cadera pegada al banco y empujá hacia arriba.</div></details>
+          <details><summary>¿Cómo se hace?</summary><div class="guide-box">Manos en el borde del banco, flexioná codos a 90° bajando la cadera cerca del banco y empujá hacia arriba.</div></details>
         </div></label>
       </div>
     </div>
@@ -240,7 +240,7 @@
       <div class="card-title"><span>Día C: Hombros y Core</span><span class="badge-warm">3x10-12</span></div>
       <div class="meal-block">
         <label class="option-item"><input type="checkbox" id="w_c1" class="workout-check" onchange="saveChecks()"><div class="option-text"><b>1. Press militar y elevaciones laterales</b>
-          <details><summary>¿Cómo se hace?</summary><div class="guide-box">Empujá mancuernas desde las orejas arriba. Luego de pie, abrí brazos hasta la altura de los hombros.</div></details>
+          <details><summary>¿Cómo se hace?</summary><div class="guide-box">Empujá mancuernas desde las orejas arriba. Luego de pie, abrí brazos hasta la altura de hombros.</div></details>
         </div></label>
       </div>
       <div class="meal-block">
@@ -249,23 +249,57 @@
         </div></label>
       </div>
     </div>
+
+    <button class="btn-full" style="background: var(--accent); color: #000; margin-bottom: 20px;" onclick="checkDayProgress()">✨ Cerrar y Evaluar mi Día Completo</button>
   </main>
 
-  <!-- TAB 3: RECETAS KETO RÁPIDAS -->
+  <!-- TAB 3: 5 RECETAS KETO POR CATEGORÍA -->
   <main id="tab-recetas" class="tab-content">
     <div class="card">
-      <div class="card-title"><span>📖 Recetas Keto Express</span><span class="badge">Fáciles</span></div>
+      <div class="card-title"><span>🍪 5 Recetas Dulces & Meriendas</span><span class="badge-warm">Dulces</span></div>
       <div class="recipe-card">
-        <div class="recipe-title">🍪 Galletitas Dulces Keto (5 Minutos)</div>
-        <div class="recipe-desc"><b>Ingredientes:</b> 1 taza harina de almendras/coco, 1 huevo, 2 cdas manteca derretida, vainilla y stevia.<br><b>Preparación:</b> Mezclá todo, armá bolitas, aplastalas en placa y horneá 10 min a 180°C.</div>
+        <div class="recipe-title">1. Galletitas Dulces Express (5 Minutos)</div>
+        <div class="recipe-desc"><b>Ingredientes:</b> 1 taza harina almendras/coco, 1 huevo, 2 cdas manteca derretida, vainilla y stevia.<br><b>Paso a paso:</b> Mezclá todo, armá bolitas, aplastalas en placa y horneá 10 min a 180°C.</div>
       </div>
       <div class="recipe-card">
-        <div class="recipe-title">🍝 Fideos Keto de Zucchini (Zoodles)</div>
-        <div class="recipe-desc"><b>Ingredientes:</b> 2 zucchinis en tiras finas, 1 cda oliva, salsa casera o crema con queso.<br><b>Preparación:</b> Salteá 3 min en sartén bien caliente, agregá salsa y queso abundante.</div>
+        <div class="recipe-title">2. Mousse de Chocolate Keto</div>
+        <div class="recipe-desc"><b>Ingredientes:</b> 3 cdas queso crema o ricota, 1 cdita cacao amargo puro 100%, stevia líquida y chorrito de crema.<br><b>Paso a paso:</b> Batí con tenedor durante 1 minuto hasta integrar. Podés agregar nueces picadas arriba.</div>
       </div>
       <div class="recipe-card">
-        <div class="recipe-title">🥩 Milanesas Keto Crocantes</div>
-        <div class="recipe-desc"><b>Rebozador:</b> 50% queso rallado seco + 50% semillas trituradas/harina almendras.<br><b>Preparación:</b> Pasá carne o pollo por huevo batido, rebozá con la mezcla y horneá o freí con oliva.</div>
+        <div class="recipe-title">3. Mug Cake Keto en Taza (Microondas 2 min)</div>
+        <div class="recipe-desc"><b>Ingredientes:</b> 1 huevo, 2 cdas harina de almendras, 1 cdita cacao puro, 1 cdita manteca, 1/2 cdita polvo de hornear y stevia.<br><b>Paso a paso:</b> Batí en una taza y cociná al microondas 90 segundos a potencia máxima.</div>
+      </div>
+      <div class="recipe-card">
+        <div class="recipe-title">4. Bombones Helados de Crema y Maní</div>
+        <div class="recipe-desc"><b>Ingredientes:</b> 2 cdas pasta de maní 100% natural (sin azúcar), 2 cdas queso crema, gotas de stevia.<br><b>Paso a paso:</b> Mezclá, hacé 4 bolitas sobre papel manteca y llevalas al freezer por 30 minutos.</div>
+      </div>
+      <div class="recipe-card">
+        <div class="recipe-title">5. Copa de Yogur Griego y Frutos Rojos</div>
+        <div class="recipe-desc"><b>Ingredientes:</b> 3 cdas colmadas de yogur griego natural sin azúcar, 4 frutillas fileteadas, canela y semillas de chía.<br><b>Paso a paso:</b> Serví en vaso capa por capa. Rápido, fresco y saciante.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>🥩 5 Recetas Saladas & Cenas</span><span class="badge">Saladas</span></div>
+      <div class="recipe-card">
+        <div class="recipe-title">1. Milanesas Keto Crocantes</div>
+        <div class="recipe-desc"><b>Rebozador:</b> 50% queso rallado seco + 50% semillas trituradas o harina de almendras.<br><b>Paso a paso:</b> Pasá carne o pollo por huevo batido con ajo y perejil, rebozá con la mezcla y horneá o cociná en sartén con oliva.</div>
+      </div>
+      <div class="recipe-card">
+        <div class="recipe-title">2. Fideos de Zucchini (Zoodles) con Crema y Queso</div>
+        <div class="recipe-desc"><b>Ingredientes:</b> 2 zucchinis cortados en tiras finas con pelapapas, 2 cdas crema de leche, queso parmesano y oliva.<br><b>Paso a paso:</b> Salteá 3 minutos en sartén bien caliente para que no suelten agua, sumá la crema y el queso.</div>
+      </div>
+      <div class="recipe-card">
+        <div class="recipe-title">3. Pizza Keto Express con Base de Pollo o Queso</div>
+        <div class="recipe-desc"><b>Ingredientes:</b> 150g pechuga procesada o atún + 1 huevo + sal y orégano.<br><b>Paso a paso:</b> Estirá en placa aceitada como masa fina, precociná 10 min al horno, agregá salsa casera y mozzarella hasta gratinar.</div>
+      </div>
+      <div class="recipe-card">
+        <div class="recipe-title">4. Tortilla Express de Zapallitos y Queso</div>
+        <div class="recipe-desc"><b>Ingredientes:</b> 2 zapallitos en cubitos, 3 huevos, 1/2 taza queso cremoso en cubos, sal marina y oliva.<br><b>Paso a paso:</b> Salteá zapallitos 5 min, agregá huevos batidos y queso, tapá la sartén a fuego bajo 4 min por lado.</div>
+      </div>
+      <div class="recipe-card">
+        <div class="recipe-title">5. Tacos / Wraps con Masa de Huevo y Queso</div>
+        <div class="recipe-desc"><b>Ingredientes:</b> 2 huevos batidos con 1 cda de queso rallado fino y pizca de orégano.<br><b>Paso a paso:</b> Volcá en sartén antiadherente como panqueque fino. Rellená con pollo desmenuzado, palta y tomate.</div>
       </div>
     </div>
   </main>
@@ -277,15 +311,16 @@
       <div class="meal-block">
         <div class="meal-header">🥚 Proteínas y Lácteos</div>
         <label class="option-item"><input type="checkbox" id="c_1" onchange="saveShopping()"><div class="option-text">Huevos (2 a 3 maples)</div></label>
-        <label class="option-item"><input type="checkbox" id="c_2" onchange="saveShopping()"><div class="option-text">Carne vacuna (bifes/milanesas) y Pollo</div></label>
-        <label class="option-item"><input type="checkbox" id="c_3" onchange="saveShopping()"><div class="option-text">Atún en lata / Pescado</div></label>
-        <label class="option-item"><input type="checkbox" id="c_4" onchange="saveShopping()"><div class="option-text">Queso cremoso, mozzarella, manteca y crema</div></label>
+        <label class="option-item"><input type="checkbox" id="c_2" onchange="saveShopping()"><div class="option-text">Carne vacuna (bifes/milanesas) y Pechugas de Pollo</div></label>
+        <label class="option-item"><input type="checkbox" id="c_3" onchange="saveShopping()"><div class="option-text">Atún en lata / Filetes de pescado</div></label>
+        <label class="option-item"><input type="checkbox" id="c_4" onchange="saveShopping()"><div class="option-text">Queso cremoso, mozzarella, parmesano y manteca</div></label>
+        <label class="option-item"><input type="checkbox" id="c_4b" onchange="saveShopping()"><div class="option-text">Yogur griego natural sin azúcar / Kéfir y Crema de leche</div></label>
       </div>
       <div class="meal-block">
         <div class="meal-header">🥦 Verdulería y Alacena</div>
         <label class="option-item"><input type="checkbox" id="c_5" onchange="saveShopping()"><div class="option-text">Paltas, espinaca, zapallitos verdes y brócoli</div></label>
         <label class="option-item"><input type="checkbox" id="c_6" onchange="saveShopping()"><div class="option-text">Harina de almendras o coco y cacao puro 100%</div></label>
-        <label class="option-item"><input type="checkbox" id="c_7" onchange="saveShopping()"><div class="option-text">Aceite de oliva virgen extra y sal marina</div></label>
+        <label class="option-item"><input type="checkbox" id="c_7" onchange="saveShopping()"><div class="option-text">Aceite de oliva virgen extra, sal marina y stevia pura</div></label>
       </div>
     </div>
   </main>
@@ -317,6 +352,7 @@
     <button class="tab-btn" onclick="switchTab('tab-medidas', this)"><span class="icon">📏</span><span>Medidas</span></button>
   </nav>
 
+  <!-- MODAL CON RESUMEN INTEGRADO DE DIETA Y EJERCICIO -->
   <div class="modal-overlay" id="motivationModal">
     <div class="modal-card">
       <div class="modal-title" id="modalTitle">¡Balance Diario!</div>
@@ -351,7 +387,7 @@
         localStorage.setItem('k75_logged_user', user);
         checkLoginStatus();
       } else {
-        alert("Usuario o contraseña incorrectos. Verificá los datos enviados por Hotmart o mail.");
+        alert("Usuario o contraseña incorrectos.");
       }
     }
 
@@ -364,9 +400,10 @@
 
     const microTips = [
       "La proteína y el entrenamiento de fuerza evitan la pérdida muscular en mujeres +49.",
+      "El yogur griego natural sin azúcar es apto keto: aporta probióticos y saciedad.",
       "El ayuno de 12 a 16 hs regula la glucosa sin disparar el cortisol ni alterar el sueño.",
       "El agua con sal marina en ayunas previene calambres y mantiene tu energía alta.",
-      "Si tenés antojo dulce por la tarde, las galletitas keto o la mousse frenan el impulso en 5 min.",
+      "Si tenés antojo dulce por la tarde, el mug cake o la mousse frenan el impulso en 3 min.",
       "Caminar 5 km diarios activa la quema de grasas sin sobrecargar tus articulaciones.",
       "No cuentes calorías al gramo: priorizá comida real, saciedad y grasas buenas."
     ];
@@ -454,30 +491,39 @@
     }
 
     function checkDayProgress() {
-      const almCheck = document.getElementById('d_alm_1').checked || document.getElementById('d_alm_2').checked || document.getElementById('d_alm_3').checked;
-      const snkCheck = document.getElementById('d_snk_1').checked || document.getElementById('d_snk_2').checked || document.getElementById('d_snk_3').checked || document.getElementById('d_snk_4').checked;
-      const cenCheck = document.getElementById('d_cen_1').checked || document.getElementById('d_cen_2').checked || document.getElementById('d_cen_3').checked;
+      const almCheck = Array.from(document.querySelectorAll('.meal-alm-check')).some(c => c.checked);
+      const snkCheck = Array.from(document.querySelectorAll('.meal-snk-check')).some(c => c.checked);
+      const cenCheck = Array.from(document.querySelectorAll('.meal-cen-check')).some(c => c.checked);
       const hidCheck = document.getElementById('d_hid_1').checked;
+      const fastCheck = document.getElementById('fast_12').checked || document.getElementById('fast_16').checked;
+
       const walkCheck = document.getElementById('h_walk').checked;
       const sleepCheck = document.getElementById('h_sleep').checked;
-      const anyWorkout = Array.from(document.querySelectorAll('.workout-check')).some(c => c.checked);
+      const workoutCheck = Array.from(document.querySelectorAll('.workout-check')).some(c => c.checked);
 
-      const is100 = almCheck && snkCheck && cenCheck && hidCheck && walkCheck && sleepCheck && anyWorkout;
+      const dietaOk = almCheck && snkCheck && cenCheck && hidCheck;
+      const ejercicioOk = walkCheck && sleepCheck && workoutCheck;
 
       const modal = document.getElementById('motivationModal');
       const title = document.getElementById('modalTitle');
       const body = document.getElementById('modalBody');
 
-      if (is100) {
-        title.innerText = "🌟 ¡DÍA 100% CUMPLIDO! 🌟";
+      let summaryHtml = `<b>Resumen del Día ${currentDay}:</b><br><br>`;
+      summaryHtml += `🥗 <b>Nutrición & Dieta:</b> ${dietaOk ? '✅ 100% Completada' : '⚠️ Faltan ítems / comidas'}<br>`;
+      summaryHtml += `⏳ <b>Ayuno:</b> ${fastCheck ? '✅ Registrado' : '⚪ No registrado'}<br>`;
+      summaryHtml += `🏋️ <b>Fuerza & Hábitos:</b> ${ejercicioOk ? '✅ 100% Completado' : '⚠️ Faltan pasos/rutina'}<br><br>`;
+
+      if (dietaOk && ejercicioOk) {
+        title.innerText = "🌟 ¡DÍA 100% PERFECTO! 🌟";
         title.style.color = "var(--accent)";
-        body.innerHTML = `¡Impresionante disciplina en el <b>Día ${currentDay}</b>!<br><br>Completaste la nutrición, tus 5 km de caminata, tu descanso y el entrenamiento de fuerza. Tu cuerpo quema grasa como fuente de energía limpia. ¡A descansar y mantener este ritmo mañana!`;
+        summaryHtml += `¡Excelente disciplina! Cumpliste tanto el plan de alimentación keto como los hábitos de fuerza y caminata. Tu cuerpo está en modo óptimo de quema de grasa. ¡A descansar!`;
       } else {
-        title.innerText = "💪 ¡Gran Esfuerzo!";
+        title.innerText = "💪 ¡Cierre de Jornada!";
         title.style.color = "var(--accent-warm)";
-        body.innerHTML = `Completaste una parte fundamental de tu <b>Día ${currentDay}</b>.<br><br>Cada comida y hábito tildado cuenta. Si hubo algún desvío, lo registraste en observaciones y mañana seguimos con todo. ¡La constancia supera a la perfección!`;
+        summaryHtml += `Registraste el balance de tu día. Cada hábito suma y lo importante es la constancia a lo largo de los 75 días. ¡Mañana vamos por el 100%!`;
       }
 
+      body.innerHTML = summaryHtml;
       modal.style.display = "flex";
     }
 
