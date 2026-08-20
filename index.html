@@ -187,6 +187,7 @@
       <textarea id="dailyNotes" placeholder="Anotá antojos o desvíos acá..." oninput="saveNotes()"></textarea>
     </div>
 
+    <!-- BOTON DE CIERRE DE DIA -->
     <button class="btn-full" style="background: var(--accent); color: #000; margin-bottom: 20px;" onclick="checkDayProgress()">✨ Cerrar y Evaluar mi Día Completo</button>
   </main>
 
@@ -253,7 +254,7 @@
     <button class="btn-full" style="background: var(--accent); color: #000; margin-bottom: 20px;" onclick="checkDayProgress()">✨ Cerrar y Evaluar mi Día Completo</button>
   </main>
 
-  <!-- TAB 3: 5 RECETAS KETO POR CATEGORÍA -->
+  <!-- TAB 3: 5 RECETAS POR CATEGORÍA -->
   <main id="tab-recetas" class="tab-content">
     <div class="card">
       <div class="card-title"><span>🍪 5 Recetas Dulces & Meriendas</span><span class="badge-warm">Dulces</span></div>
@@ -362,11 +363,12 @@
   </div>
 
   <script>
+    // LISTA DE USUARIOS AUTORIZADOS (Podés sumar los emails de tus clientas acá abajo)
     const validUsers = {
+      "carla@ketofit.com": "admin75",
       "admin@ketofit.com": "keto2026",
       "prueba@ketofit.com": "123456",
-      "cliente1@gmail.com": "acceso75",
-      "carla@ketofit.com": "admin75"
+      "alumna1@gmail.com": "acceso75"
     };
 
     function checkLoginStatus() {
@@ -399,7 +401,7 @@
     }
 
     const microTips = [
-      "La proteína y el entrenamiento de fuerza evitan la pérdida muscular en mujeres +49.",
+      "La proteína y el entrenamiento de fuerza evitan la pérdida muscular en mujeres +40.",
       "El yogur griego natural sin azúcar es apto keto: aporta probióticos y saciedad.",
       "El ayuno de 12 a 16 hs regula la glucosa sin disparar el cortisol ni alterar el sueño.",
       "El agua con sal marina en ayunas previene calambres y mantiene tu energía alta.",
@@ -490,6 +492,7 @@
       localStorage.setItem(`k75_notes_day_${currentDay}`, text);
     }
 
+    // EVALUACIÓN Y CIERRE DE AMBAS SOLAPAS (DIETA + ENTRENAMIENTO)
     function checkDayProgress() {
       const almCheck = Array.from(document.querySelectorAll('.meal-alm-check')).some(c => c.checked);
       const snkCheck = Array.from(document.querySelectorAll('.meal-snk-check')).some(c => c.checked);
