@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Balance 75">
-  <title>Balance 75 Pro Tracker</title>
+  <meta name="apple-mobile-web-app-title" content="HabitFit 84">
+  <title>HabitFit 84 Pro Tracker</title>
   <style>
     :root {
       --bg: #0b0f19;
@@ -94,7 +94,7 @@
   <div id="loginScreen">
     <div class="login-card">
       <div style="font-size: 32px; margin-bottom: 8px;">✨</div>
-      <h2 style="font-size: 20px; margin-bottom: 4px; color: #fff;">Método Balance 75</h2>
+      <h2 style="font-size: 20px; margin-bottom: 4px; color: #fff;">HabitFit 84 Pro</h2>
       <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 20px;">Tu organizador diario de hábitos y bienestar</p>
       
       <input type="email" id="loginUser" class="login-input" placeholder="Tu correo de acceso">
@@ -107,7 +107,7 @@
 
   <!-- APP PRINCIPAL -->
   <header>
-    <h1>Balance 75 Tracker</h1>
+    <h1>HabitFit 84 Tracker</h1>
     <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 4px;">
       <span id="userBadge" style="font-size: 11px; color: var(--accent);">Usuario: -</span>
       <button onclick="doLogout()" style="background: none; border: none; color: #ef4444; font-size: 11px; cursor: pointer; text-decoration: underline;">Cerrar sesión</button>
@@ -121,7 +121,7 @@
 
   <div class="day-banner">
     <div class="day-info">
-      <div class="day-title" id="dayDisplay">Día 1 / 75</div>
+      <div class="day-title" id="dayDisplay">Día 1 / 84</div>
       <div class="day-subtitle" id="tuesdayAlert">Martes de medidas</div>
     </div>
     <div class="day-actions">
@@ -130,7 +130,7 @@
     </div>
   </div>
 
-  <!-- TAB 1: NUTRICIÓN -->
+  <!-- TAB 1: COMIDAS -->
   <main id="tab-dieta" class="tab-content active">
     <div class="card">
       <div class="card-title">
@@ -189,7 +189,7 @@
     <button class="btn-full" style="background: var(--accent); color: #000; margin-bottom: 20px;" onclick="checkDayProgress()">✨ Cerrar y Validar mi Día</button>
   </main>
 
-  <!-- TAB 2: ENTRENAMIENTO & HÁBITOS -->
+  <!-- TAB 2: FUERZA & HÁBITOS -->
   <main id="tab-entrenamiento" class="tab-content">
     <div class="card">
       <div class="card-title"><span>Hábitos Fundamentales</span><span class="badge-purple">Obligatorio</span></div>
@@ -197,7 +197,7 @@
       <label class="option-item"><input type="checkbox" id="h_sleep" class="habit-check" onchange="saveChecks()"><div class="option-text"><b>😴 8 Horas de Descanso</b> (Recuperación muscular y regulación de cortisol)</div></label>
     </div>
 
-    <!-- RUTINA EXPRESS FULL BODY 20 MIN -->
+    <!-- RUTINA FULL BODY EXPRESS 20 MIN -->
     <div class="card" style="border: 1px solid var(--accent);">
       <div class="card-title"><span style="color: var(--accent);">⚡ Rutina Full-Body Express (20 Minutos)</span><span class="badge">Transformadora</span></div>
       <p style="font-size: 11px; color: var(--text-muted); margin-bottom: 10px;">3 vueltas completas (40 seg de trabajo x 20 seg de descanso por ejercicio):</p>
@@ -228,7 +228,7 @@
       </div>
     </div>
 
-    <!-- OTRAS RUTINAS DIVIDIDAS -->
+    <!-- OTRAS OPCIONES DE RUTINAS -->
     <div class="card">
       <div class="card-title"><span>Opción Día A: Piernas y Glúteos</span><span class="badge-warm">3x10-12</span></div>
       <label class="option-item"><input type="checkbox" id="w_a1" class="workout-check" onchange="saveChecks()"><div class="option-text">1. Sentadillas con mancuernas / Prensa</div></label>
@@ -246,7 +246,7 @@
     <button class="btn-full" style="background: var(--accent); color: #000; margin-bottom: 20px;" onclick="checkDayProgress()">✨ Cerrar y Validar mi Día</button>
   </main>
 
-  <!-- TAB 3: 10 RECETAS SALUDABLES -->
+  <!-- TAB 3: 10 RECETAS -->
   <main id="tab-recetas" class="tab-content">
     <div class="card">
       <div class="card-title"><span>🍪 5 Recetas Dulces & Meriendas</span><span class="badge-warm">Dulces</span></div>
@@ -344,7 +344,7 @@
     <button class="tab-btn" onclick="switchTab('tab-medidas', this)"><span class="icon">📏</span><span>Medidas</span></button>
   </nav>
 
-  <!-- MODAL DE CIERRE CON REQUISITO ESTRICTO -->
+  <!-- MODAL -->
   <div class="modal-overlay" id="motivationModal">
     <div class="modal-card">
       <div class="modal-title" id="modalTitle">Balance Diario</div>
@@ -354,16 +354,15 @@
   </div>
 
   <script>
-    // LISTA DE ACCESOS IMPERSONALES
+    // USUARIOS AUTORIZADOS
     const validUsers = {
-      "acceso@balance75.com": "balance2026",
-      "miembro@balance75.com": "habitos75",
-      "admin@balance75.com": "admin2026",
-      "prueba@balance75.com": "123456"
+      "acceso@habitfit84.com": "habit2026",
+      "admin@habitfit84.com": "admin84",
+      "prueba@habitfit84.com": "123456"
     };
 
     function checkLoginStatus() {
-      const activeUser = localStorage.getItem('b75_logged_user');
+      const activeUser = localStorage.getItem('hf84_logged_user');
       if (activeUser) {
         document.getElementById('loginScreen').style.display = 'none';
         document.getElementById('userBadge').innerText = 'Usuario: ' + activeUser;
@@ -377,7 +376,7 @@
       const pass = document.getElementById('loginPass').value.trim();
 
       if (validUsers[user] && validUsers[user] === pass) {
-        localStorage.setItem('b75_logged_user', user);
+        localStorage.setItem('hf84_logged_user', user);
         checkLoginStatus();
       } else {
         alert("Usuario o contraseña incorrectos.");
@@ -386,7 +385,7 @@
 
     function doLogout() {
       if (confirm("¿Cerrar sesión de la app?")) {
-        localStorage.removeItem('b75_logged_user');
+        localStorage.removeItem('hf84_logged_user');
         checkLoginStatus();
       }
     }
@@ -412,9 +411,9 @@
       el.classList.add('active');
     }
 
-    let currentDay = parseInt(localStorage.getItem('b75_day') || '1');
+    let currentDay = parseInt(localStorage.getItem('hf84_day') || '1');
     function updateDayDisplay() {
-      document.getElementById('dayDisplay').innerText = `Día ${currentDay} / 75`;
+      document.getElementById('dayDisplay').innerText = `Día ${currentDay} / 84`;
       const today = new Date().getDay();
       document.getElementById('tuesdayAlert').innerText = (today === 2) ? '⚠️ ¡Hoy es Martes: Registrar medidas!' : 'Próximo pesaje: Martes';
       document.getElementById('tuesdayAlert').style.color = (today === 2) ? '#f59e0b' : '#9ca3af';
@@ -426,9 +425,9 @@
         alert("⚠️ No podés avanzar de día hasta completar TODOS los requerimientos de Comidas y de Fuerza/Hábitos de hoy.");
         return;
       }
-      if (confirm("¿Día completado con éxito! ¿Avanzar al siguiente día y reiniciar los registros?")) {
+      if (confirm("¡Día completado con éxito! ¿Avanzar al siguiente día y reiniciar los registros?")) {
         currentDay++;
-        localStorage.setItem('b75_day', currentDay.toString());
+        localStorage.setItem('hf84_day', currentDay.toString());
         resetToday();
         updateDayDisplay();
       }
@@ -446,16 +445,16 @@
       document.querySelectorAll('#tab-dieta input[type="checkbox"], #tab-entrenamiento input[type="checkbox"]').forEach(c => {
         state[c.id] = c.checked;
       });
-      localStorage.setItem('b75_checks', JSON.stringify(state));
+      localStorage.setItem('hf84_checks', JSON.stringify(state));
     }
 
     function loadChecks() {
-      const state = JSON.parse(localStorage.getItem('b75_checks') || '{}');
+      const state = JSON.parse(localStorage.getItem('hf84_checks') || '{}');
       Object.keys(state).forEach(id => {
         const el = document.getElementById(id);
         if (el) el.checked = state[id];
       });
-      document.getElementById('dailyNotes').value = localStorage.getItem(`b75_notes_day_${currentDay}`) || '';
+      document.getElementById('dailyNotes').value = localStorage.getItem(`hf84_notes_day_${currentDay}`) || '';
     }
 
     function saveShopping() {
@@ -463,11 +462,11 @@
       document.querySelectorAll('#tab-compras input[type="checkbox"]').forEach(c => {
         state[c.id] = c.checked;
       });
-      localStorage.setItem('b75_shopping', JSON.stringify(state));
+      localStorage.setItem('hf84_shopping', JSON.stringify(state));
     }
 
     function loadShopping() {
-      const state = JSON.parse(localStorage.getItem('b75_shopping') || '{}');
+      const state = JSON.parse(localStorage.getItem('hf84_shopping') || '{}');
       Object.keys(state).forEach(id => {
         const el = document.getElementById(id);
         if (el) el.checked = state[id];
@@ -483,10 +482,9 @@
 
     function saveNotes() {
       const text = document.getElementById('dailyNotes').value;
-      localStorage.setItem(`b75_notes_day_${currentDay}`, text);
+      localStorage.setItem(`hf84_notes_day_${currentDay}`, text);
     }
 
-    // VALIDACIÓN COMPLETA ESTRICTA
     function isDayFullyCompleted() {
       const almCheck = Array.from(document.querySelectorAll('.meal-alm-check')).some(c => c.checked);
       const snkCheck = Array.from(document.querySelectorAll('.meal-snk-check')).some(c => c.checked);
@@ -554,9 +552,9 @@
         peso, cintura, cadera, pierna, brazo
       };
 
-      const history = JSON.parse(localStorage.getItem('b75_measurements') || '[]');
+      const history = JSON.parse(localStorage.getItem('hf84_measurements') || '[]');
       history.unshift(record);
-      localStorage.setItem('b75_measurements', JSON.stringify(history));
+      localStorage.setItem('hf84_measurements', JSON.stringify(history));
 
       document.getElementById('m_peso').value = '';
       document.getElementById('m_cintura').value = '';
@@ -569,7 +567,7 @@
     }
 
     function renderHistory() {
-      const history = JSON.parse(localStorage.getItem('b75_measurements') || '[]');
+      const history = JSON.parse(localStorage.getItem('hf84_measurements') || '[]');
       const container = document.getElementById('historyList');
       if (history.length === 0) {
         container.innerHTML = '<span style="font-size:12px; color:#9ca3af;">No hay registros guardados aún.</span>';
